@@ -1,0 +1,334 @@
+/* ==========================================================================
+   FRESH LINK — "Morning Market" design system
+   Palette: basil green (primary), mango (accent), sand (paper/background)
+   Type:    Fraunces (display) + Inter (body) + IBM Plex Mono (tags/prices)
+   Signature: hand-tied market price-tags used for filters, badges, counters
+   ========================================================================== */
+
+:root {
+    --ink:        #202619;
+    --basil:      #1F4D2E;
+    --basil-dark: #143A21;
+    --basil-light:#2F6B3F;
+    --sand:       #F5EFDD;
+    --sand-2:     #ECE1C2;
+    --paper:      #FFFEFB;
+    --line:       #D9CDA6;
+    --mango:      #EC8B34;
+    --mango-dark: #C96E1E;
+    --tomato:     #C64B3C;
+    --leaf:       #DCEEC3;
+    --shadow:     0 4px 16px rgba(32,38,25,0.08);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+* { box-sizing: border-box; }
+
+html, body {
+    background: var(--sand);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 700;
+    color: var(--basil-dark);
+    letter-spacing: -0.01em;
+}
+
+a { color: var(--basil); }
+a:hover { color: var(--mango-dark); }
+
+/* ---------- Navbar ---------- */
+.navbar {
+    background: var(--basil) !important;
+    box-shadow: 0 2px 0 var(--basil-dark);
+}
+.navbar-brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+}
+.navbar .nav-link {
+    color: rgba(255,255,255,0.85) !important;
+    font-weight: 500;
+}
+.navbar .nav-link:hover { color: #fff !important; }
+
+/* ---------- Buttons ---------- */
+.btn {
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.55rem 1.1rem;
+    transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn-brand, .btn-brand:visited {
+    background: var(--mango);
+    border: none;
+    color: #241300;
+}
+.btn-brand:hover {
+    background: var(--mango-dark);
+    color: #1a0d00;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(201,110,30,0.35);
+}
+.btn-outline-success {
+    color: var(--basil);
+    border-color: var(--basil);
+}
+.btn-outline-success:hover {
+    background: var(--basil);
+    border-color: var(--basil);
+}
+.btn-outline-light:hover { color: var(--basil-dark); }
+
+/* ---------- Cards / forms (overrides Bootstrap defaults site-wide) ---------- */
+.card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+}
+.form-control, .form-select {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--paper);
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--basil-light);
+    box-shadow: 0 0 0 0.2rem rgba(31,77,46,0.15);
+}
+.form-label { font-weight: 600; color: var(--basil-dark); font-size: 0.9rem; }
+.table { background: var(--paper); }
+.list-group-item {
+    border-color: var(--line);
+}
+.list-group-item-action:hover {
+    background: var(--leaf);
+}
+
+.alert-danger { background: #FBE7E3; border-color: var(--tomato); color: #7A2A1E; }
+.alert-success { background: var(--leaf); border-color: var(--basil-light); color: var(--basil-dark); }
+.alert-info { background: #EAF3FB; border-color: #7FA8C9; color: #234B6B; }
+.alert-warning { background: #FCEFD8; border-color: var(--mango); color: #6B4310; }
+
+/* ---------- Hero ---------- */
+.hero {
+    position: relative;
+    background: var(--basil);
+    color: #F5F1E2;
+    border-radius: 18px;
+    padding: 56px 44px;
+    overflow: hidden;
+}
+.hero::before {
+    /* woven crate-slat pattern, purely CSS - no external image dependency */
+    content: "";
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(115deg, rgba(255,255,255,0.045) 0 2px, transparent 2px 26px),
+                       repeating-linear-gradient(25deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 26px);
+    pointer-events: none;
+}
+.hero-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mango);
+    background: rgba(255,255,255,0.08);
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+}
+.hero h1 {
+    color: #FBF8EE;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.06;
+    max-width: 14ch;
+}
+.hero .lead {
+    color: rgba(251,248,238,0.82);
+    max-width: 46ch;
+    font-size: 1.05rem;
+    margin: 18px 0 26px;
+}
+
+/* ---------- Signature: hand-tied market tags (filters, counters, badges) ---------- */
+.tag-chip {
+    position: relative;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 0.92rem;
+    background: var(--paper);
+    border: 1.5px dashed var(--line);
+    border-radius: 6px;
+    padding: 10px 16px 10px 26px;
+    color: var(--ink);
+    text-align: left;
+}
+.tag-chip::before {
+    content: "";
+    position: absolute;
+    left: 10px; top: 50%;
+    transform: translateY(-50%);
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--sand);
+    border: 1.5px solid var(--basil);
+}
+.tag-chip.active {
+    background: var(--basil);
+    border-style: solid;
+    border-color: var(--basil-dark);
+    color: #fff;
+    transform: rotate(-1deg);
+}
+.tag-chip.active::before { background: var(--mango); border-color: var(--mango-dark); }
+.tag-chip:nth-child(odd) { transform: rotate(0.6deg); }
+.tag-chip:nth-child(even) { transform: rotate(-0.6deg); }
+.tag-chip.active:nth-child(odd) { transform: rotate(-1deg); }
+
+.badge-pill {
+    font-family: 'IBM Plex Mono', monospace;
+    background: var(--leaf);
+    color: var(--basil-dark);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+}
+
+/* Hanging counter tag - the "0 vendors available" signature widget */
+.counter-tag {
+    position: relative;
+    background: var(--ink);
+    color: var(--sand);
+    border-radius: 12px;
+    padding: 22px 24px;
+    text-align: center;
+    transform: rotate(1.5deg);
+    box-shadow: var(--shadow);
+}
+.counter-tag::before {
+    content: "";
+    position: absolute; top: -14px; left: 50%;
+    transform: translateX(-50%);
+    width: 2px; height: 16px;
+    background: var(--line);
+}
+.counter-tag .num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--mango);
+    display: block;
+    line-height: 1;
+}
+.counter-tag .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(245,239,221,0.7);
+}
+
+/* ---------- Vendor / product cards ---------- */
+.card-vendor {
+    border-radius: 12px;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+.card-vendor:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(32,38,25,0.14);
+}
+.product-card { overflow: hidden; }
+.product-card img {
+    height: 140px;
+    width: 100%;
+    object-fit: cover;
+}
+
+#map {
+    width: 100%;
+    height: 420px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+}
+.map-placeholder {
+    width: 100%;
+    min-height: 420px;
+    border-radius: 14px;
+    border: 1.5px dashed var(--line);
+    background: repeating-linear-gradient(45deg, var(--sand-2) 0 12px, var(--sand) 12px 24px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+}
+
+/* ---------- Status track (order tracking timeline) ---------- */
+.status-track {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin: 26px 0;
+}
+.status-track li {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    color: #A79E82;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.status-track li::after {
+    content: "";
+    position: absolute;
+    top: 10px; left: 55%;
+    width: 90%;
+    height: 2px;
+    background: var(--line);
+    z-index: 0;
+}
+.status-track li:last-child::after { display: none; }
+.status-track li.active::after { background: var(--basil-light); }
+.status-track li.active { color: var(--basil-dark); }
+.status-track li .dot {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--line);
+    margin: 0 auto 8px;
+    position: relative;
+    z-index: 1;
+}
+.status-track li.active .dot {
+    background: var(--basil);
+    border-color: var(--basil-dark);
+}
+
+footer {
+    background: var(--sand-2);
+    border-top: 1px solid var(--line) !important;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--basil-dark);
+}
+
+@media (max-width: 768px) {
+    .hero { padding: 34px 22px; }
+    .hero h1 { font-size: 2.1rem; }
+}
